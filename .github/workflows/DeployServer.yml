@@ -21,6 +21,8 @@ jobs:
         run: git config --global user.email 'karnati187@gmail.com'
       - name: add heroku remote
         run: git remote add heroku https://heroku:e29ebd9f-c10a-456d-a3d1-46ea297f857f@git.heroku.com/varun-recipe-api.git
+      - name: Fetch repo
+        run: git fetch --unshallow
       - name: push to heroku remote
-        run: git push heroku master
+        run: git push heroku master --force
       
