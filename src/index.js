@@ -15,7 +15,6 @@ connectDB()
 app.use(cors())
 app.use(express.json())
 
-console.log("hi")
 
 app.get('/',(req,res)=>{
     res.send(`Server listening at PORT ${port}`)
