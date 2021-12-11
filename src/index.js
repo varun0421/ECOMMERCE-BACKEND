@@ -14,16 +14,14 @@ connectDB()
 
 app.use(cors())
 app.use(express.json())
-
-console.log("hi")
-
-app.get('/',(req,res)=>{
-    res.send(`Server listening at PORT ${port}`)
-})
 //route to handle auth requests
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product", productRoutes)
+
+app.get('/',(req,res)=>{
+    res.send(`Server listening at PORT ${port} (Deployed from workflow)`)
+})
 
 app.listen(port, (req, res) => {
     console.log(`Server listening at PORT ${port}`)
