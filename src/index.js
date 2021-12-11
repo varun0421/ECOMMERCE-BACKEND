@@ -15,6 +15,8 @@ connectDB()
 app.use(cors())
 app.use(express.json())
 
+console.log("hi")
+
 app.get('/',(req,res)=>{
     res.send(`Server listening at PORT ${port}`)
 })
@@ -22,8 +24,6 @@ app.get('/',(req,res)=>{
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/category", categoryRoutes)
 app.use("/api/v1/product", productRoutes)
-
-
 
 app.listen(port, (req, res) => {
     console.log(`Server listening at PORT ${port}`)
