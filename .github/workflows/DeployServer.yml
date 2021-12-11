@@ -20,7 +20,7 @@ jobs:
       - name: Add github email
         run: git config --global user.email 'karnati187@gmail.com'
       - name: add heroku remote
-        run: git remote add heroku https://heroku:e29ebd9f-c10a-456d-a3d1-46ea297f857f@git.heroku.com/varun-recipe-api.git
+        run: git remote add heroku https://heroku:${{secrets.HEROKU_API_KEY}}@git.heroku.com/${{secrets.HEROKU_APP_NAME}}.git
       - name: Fetch repo
         run: git fetch --unshallow
       - name: push to heroku remote
