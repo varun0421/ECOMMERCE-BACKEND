@@ -33,7 +33,7 @@ isProtected: false
 router.post('/signup',
     body('firstName').isLength({ min: 5 }),
     body('email').isEmail(),
-    body('password').isLength({ min: 10 })
+    body('password').isLength({ min: 5 })
     , async (req, res) => {
 
         const { errors } = validationResult(req)
@@ -46,7 +46,7 @@ router.post('/signup',
             const salt = await bcrypt.genSalt(5)
             const hashedPassword = await bcrypt.hash(password, salt)
 
-            const user = new User({ firstName, lastName, email, password: hashedPassword })
+            const user = new User({ firstName, lastName, email, password: hashedPassword})
 
             await user.save()
 
