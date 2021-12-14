@@ -13,7 +13,7 @@ params : none
 isProtected: true (admin)
 */
 
-router.get('/users', async (req, res) => {
+router.get('/users',isAdmin, async (req, res) => {
     try {
         const users = await User.find({})
         res.json({ users })
