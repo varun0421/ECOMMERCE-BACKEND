@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import isAdmin from '../middlewares/isAdmin'
 import { body, validationResult } from 'express-validator'
 
+
 /*
 type : GET
 path : /api/v1/auth/users
@@ -13,7 +14,7 @@ params : none
 isProtected: true (admin)
 */
 
-router.get('/users',isAdmin, async (req, res) => {
+router.get('/users', isAdmin, async (req, res) => {
     try {
         const users = await User.find({})
         res.json({ users })
@@ -31,9 +32,9 @@ isProtected: false
 */
 
 router.post('/signup',
-    body('firstName').isLength({ min: 4 }),
+    body('firstName').isLength({ min: 5 }),
     body('email').isEmail(),
-    body('password').isLength({ min: 4 })
+    body('password').isLength({ min: 10 })
     , async (req, res) => {
 
         const { errors } = validationResult(req)
@@ -46,7 +47,7 @@ router.post('/signup',
             const salt = await bcrypt.genSalt(5)
             const hashedPassword = await bcrypt.hash(password, salt)
 
-            const user = new User({ firstName, lastName, email, password: hashedPassword})
+            const user = new User({ firstName, lastName, email, password: hashedPassword })
 
             await user.save()
 
@@ -55,8 +56,7 @@ router.post('/signup',
             console.log(error.message)
             res.status(500).json({ users: {} })
         }
-    }
-)
+    })
 
 /*
 type : POST
