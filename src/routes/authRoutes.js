@@ -14,7 +14,7 @@ params : none
 isProtected: true (admin)
 */
 
-router.get('/users',isAdmin, async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
         const users = await User.find({})
         res.json({ users })
@@ -32,9 +32,9 @@ isProtected: false
 */
 
 router.post('/signup',
-    body('firstName').isLength({ min: 5 }),
+    body('firstName').isLength({ min: 3 }),
     body('email').isEmail(),
-    body('password').isLength({ min: 5 })
+    body('password').isLength({ min: 3 })
     , async (req, res) => {
 
         const { errors } = validationResult(req)
@@ -54,7 +54,7 @@ router.post('/signup',
             res.json({ user })
         } catch (error) {
             console.log(error.message)
-            res.status(500).json({ users: {} })
+            res.status(500).json({ users: { firstName , email} })
         }
     })
 
